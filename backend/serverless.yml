@@ -2,7 +2,7 @@
 org: fuzzfoo
 app: serverless-todo-app-2
 service: serverless-todo-app-2
-frameworkVersion: 2.21.1
+frameworkVersion: 3.23.0
 
 plugins:
   - serverless-webpack

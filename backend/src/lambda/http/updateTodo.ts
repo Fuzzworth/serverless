@@ -15,7 +15,7 @@ export const handler = middy(
     // TODO: Update a TODO item with the provided id using values in the "updatedTodo" object
     const userID = getUserId(event)
     console.log('userID: ', userID)
-    await updateTodo(userID,todoId,updatedTodo)
+    await updateTodo(todoId,updatedTodo,userID)
 
 
     return {

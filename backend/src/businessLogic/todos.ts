@@ -52,8 +52,8 @@ export async function updateTodo(
 }
 
 export async function deleteTodo(
-  userId: string,
-  todoId: string
+  todoId: string,
+  userId: string
 ): Promise<string> {
   logger.info('Delete todo function called')
 

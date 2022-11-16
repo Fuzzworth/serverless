@@ -61,8 +61,8 @@ export async function deleteTodo(
 }
 
 export async function createAttachmentPresignedUrl(
-  userId: string,
-  todoId: string
+  todoId: string,
+  userId: string
 ): Promise<string> {
   logger.info('createAttachmentPresignedUrl  function called by user', userId,todoId)
 

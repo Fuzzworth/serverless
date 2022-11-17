@@ -33,6 +33,7 @@ export async function createTodo(
     todoId,
     createdAt,
     done: false,
+    attachmentUrl: null,
     ...newTodo
   }
 
@@ -47,6 +48,17 @@ export async function updateTodo(
   logger.info('Update todo function called')
 
   return await todosAccess.updateTodoItem(todoId,todoUpdate,userId)
+}
+
+export async function updateTodoImage(
+  todoId: string,
+  userId: string
+): Promise<TodoUpdate> {
+  logger.info('Update todo image function called')
+
+  const s3AttachmentUrl = attachmentUtils.getAttachmentUrl(todoId)
+
+  return await todosAccess.updateTodoItemImage(todoId,s3AttachmentUrl,userId)
 }
 
 export async function deleteTodo(
@@ -64,5 +76,11 @@ export async function createAttachmentPresignedUrl(
 ): Promise<string> {
   logger.info('createAttachmentPresignedUrl  function called by user', userId,todoId)
 
-  return attachmentUtils.getUploadUrl(todoId)
+  const url = attachmentUtils.getUploadUrl(todoId)
+
+  const todoItem = await updateTodoImage(todoId,userId)
+
+  logger.info('TodoItem function called by user', todoItem)
+
+  return url
 }
